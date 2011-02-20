@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=<: $settings.charset :>" />
+<title>Sciangai</title>
+<link rel="stylesheet" href="/css/sciangai-style.css" />
+</head>
+<body>
+
+<div id="page">
+
+    <div id="sidebar">
+
+        <ul id="sidebar-items">
+
+            : if $page {
+
+            <li><h3>Revision <: $page.revision :></h3>
+                <form action="/delete" method="POST">
+                    <input type="hidden" name="id" value="<: $page.id :>" />
+                    <input type="submit" value="DELETE" />
+                </form>
+            </li>
+
+                : if $older_revisions {
+                <li>
+                    <h3>Older revisions:</h3>
+                    <ul>
+                    : for $older_revisions -> $revision {
+                        <li><a href="/article/id/<: $revision.id :>">rev. <: $revision.revision :></a>
+                    : }
+                    </ul>
+                </li>
+                : }
+
+            : }
+
+            <li>
+            : if $latest_pages.size() > 0 {
+                <h3>Latest modified</h3>
+                <ul class="links">
+                : for $latest_pages -> $page {
+                    <li><a href="/<: $page.name :>"><: $page.name :></a><br />
+                    <small>
+                        <: $page.last_modified_by.username :>,
+                        <: $page.last_modified :>
+                    </small>
+                    </li>
+                : }
+                </ul>
+            : } else {
+                <h3>No pages :(</h3>
+            : }
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div id="content">
+
+        <div id="header">
+            <h1><a href="/">Sciangai</a></h1>
+            <h2>a lean wiki...</h2>
+        </div>
+
+        <: $content | raw :>
+
+    </div>
+
+
+    <script src="/js/jquery.js"></script>
+    <script type="text/javascript">
+        $('#a_show_edit').click(function() {
+            $('#edit_box').toggle();
+        });
+    </script>
+
+</div>
+
+    <div id="footer">
+        Powered by <a href="http://perldancer.org/">Dancer</a> <: $dancer_version :>
+    </div>
+</body>
+</html>

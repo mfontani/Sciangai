@@ -2,6 +2,7 @@ use Test::More qw/no_plan/;
 use strict;
 use warnings;
 use Sciangai;
+BEGIN {chdir 't/'};
 use Dancer::Test;
 
 diag "Deploying schema..";

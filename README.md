@@ -22,7 +22,7 @@ The code is released under the same terms as Perl 5 itself.
 - Deploys to either SQLite or MySQL
 - Uses Text::MultiMarkdown for the pages
 - Keeps older pages revisions around
-- Uses memcached and
+- Uses memcached
 
 # Bugs
 

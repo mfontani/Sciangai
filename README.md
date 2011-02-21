@@ -91,9 +91,9 @@ Where?! Please use the "issues" tab on Github to report them.
 
 # See also:
 
-Dancer         - the Perl web framework
-PSGI and Plack - the new black? See http://perlvogue.com/
-Starman        - to deploy the app in production
+- Dancer         - the Perl web framework
+- PSGI and Plack - the new black? See http://perlvogue.com/
+- Starman        - to deploy the app in production
 
 # About the name
 

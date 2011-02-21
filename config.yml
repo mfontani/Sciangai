@@ -11,7 +11,7 @@ session_cookie_key: "tHIs rANdOm kEy IS NoT vEry rANDom"
 
 engines:
   xslate:
-    cache_dir: "/tmp/sciangai_xslate_cache"
+    cache_dir: "/tmp/__sciangai_xslate_cache"
     cache: 1
     path:
       - /

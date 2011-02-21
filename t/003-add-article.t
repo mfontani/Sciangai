@@ -5,24 +5,13 @@ use Sciangai;
 BEGIN {chdir 't/'};
 use Dancer::Test;
 
-diag "Deploying schema..";
-unlink 'sciangai.db';
-qx{../bin/deploy_schema ../environments/development.yml};
-diag "Deployed schema..";
-ok( -f 'sciangai.db' ) or BAIL_OUT("Need sciangai.db");
-# create anonymous coward user
-my $anon = Sciangai::schema->resultset('User')->new({
-    username => 'anonymous',
-});
-$anon->insert;
-## TEST BEGINS
-
 diag "Resetting caches for this test..";
 $Sciangai::memd->delete_multi(
     'latest_10_pages',
     map { ("page-$_", "orevs-$_") }
     qw/Home slartibartfast slarti_bart_&_faster slarti+bart+fast /
 );
+$Sciangai::mongopage->remove();
 
 response_content_like [ 'GET' => '/Home' ], qr/No such page/, 'OK no such page /Home yet on wiki';
 
@@ -103,4 +92,4 @@ $Sciangai::memd->delete_multi(
     map { ("page-$_", "orevs-$_") }
     qw/Home slartibartfast slarti_bart_&_faster slarti+bart+fast /
 );
-unlink 'sciangai.db';
+$Sciangai::mongopage->remove();

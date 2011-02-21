@@ -17,21 +17,19 @@
 
             <li><h3>Revision <: $page.revision :></h3>
                 <form action="/delete" method="POST">
-                    <input type="hidden" name="id" value="<: $page.id :>" />
+                    <input type="hidden" name="id" value="<: $page._id :>" />
                     <input type="submit" value="DELETE" />
                 </form>
             </li>
 
-                : if $older_revisions {
-                <li>
-                    <h3>Older revisions:</h3>
-                    <ul>
-                    : for $older_revisions -> $revision {
-                        <li><a href="/article/id/<: $revision.id :>">rev. <: $revision.revision :></a>
-                    : }
-                    </ul>
-                </li>
+            <li>
+                <h3>Older revisions:</h3>
+                <ul>
+                : for $page.revisions -> $revision {
+                    <li><a href="/revision/<: $page._id :>/<: $revision.revision :>">rev. <: $revision.revision :></a>
                 : }
+                </ul>
+            </li>
 
             : }
 

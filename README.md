@@ -18,11 +18,10 @@ The code is released under the same terms as Perl 5 itself.
 
 # Features
 
-- Uses SQLite for the development database and for tests
-- Deploys to either SQLite or MySQL
+- Uses MongoDB, for WEB SCALE!!
 - Uses Text::MultiMarkdown for the pages
 - Keeps older pages revisions around
-- Uses memcached
+- Uses (not yet) memcached
 
 # Bugs
 
@@ -40,26 +39,20 @@ Where?! Please use the "issues" tab on Github to report them.
     # you may have to force the above one
     $ cpanm Dancer
     # you may have to force HTTP::Server::Simple and retry
-    $ cpanm Test::More YAML Dancer DBIx::Class   \
-        Text::MultiMarkdown Dancer::Plugin::DBIC \
-        Dancer::Session::Cookie Text::Xslate     \
-        Dancer::Template::Xslate Date::Calc      \
-        Digest::SHA Cache::Memcached::Fast       \
-        Plack::Middleware::Deflater              \
+    $ cpanm Test::More MongoDB      \
+        Text::MultiMarkdown         \
+        Text::Xslate                \
+        Dancer::Template::Xslate    \
+        Cache::Memcached::Fast      \
+        Plack::Middleware::Deflater \
         Plack::Middleware::Debug
     # if you want to run using starman:
     $ cpanm Starman
 
-    # Deploy schema to SQLite for development
-    $ ./bin/deploy_schema environments/development.yml
     $ perl bin/app.pl
     # webserver (development) will be on port 3000.
 
-    # Deploy schema to MySQL for production
-    $ mysql -uroot -pr00t -e \
-        'create database sciangai default character set utf8'
-    # possibly under tmux or similar:
-    $ ./bin/deploy_schema environments/production.yml
+    # Production
     $ starman -E production --port 12345
 
 # nginx config

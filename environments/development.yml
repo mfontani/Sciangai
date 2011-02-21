@@ -9,7 +9,8 @@ logger: "console"
 # the log level for this environement
 # core is the lowest, it shows Dancer's core log messages as well as yours
 # (debug, warning and error)
-log: "core"
+#log: "core"
+log: "debug"
 
 # should Dancer consider warnings as critical errors?
 warnings: 1
@@ -49,6 +50,11 @@ plugins:
         pckg: "Sciangai::Schema"
         connect_info:
             - dbi:SQLite:dbname=sciangai.db
+  Mongo:
+    host: 127.0.0.1
+    port: 27017
+    db_name: sciangaidev
+
 #    dev:
 #        dsn:  "dbi:mysql:database=sciangai"
 #        user: "root"
